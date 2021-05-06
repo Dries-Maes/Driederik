@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Driederik.Controllers
 {
+    [ApiController]
+    [Route("hihi[controller]s")]
+    //letters aanvullen om naam van class aan te passen in Swagger
     public class SuperPowerController : ControllerBase
     {
         private readonly ILogger<WeatherForecastController> _logger;
@@ -38,13 +41,13 @@ namespace Driederik.Controllers
             return await _superPowerService.GetSuperPower(Id);
         }
 
-        [HttpPut("{SuperPower}")]
+        [HttpPut]
         public void UpdatePowerAsync(SuperPower superPower)
         {
             _superPowerService.UpdateSuperPower(superPower);
         }
 
-        [HttpDelete("{SuperPower}")]
+        [HttpDelete]
         public void DeletePower(SuperPower superPower)
         {
             _superPowerService.DeleteSuperPower(superPower);

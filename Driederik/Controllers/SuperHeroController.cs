@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Driederik.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("haha[controller]es")]
     public class SuperHeroController : ControllerBase
     {
         private readonly ILogger<WeatherForecastController> _logger;
@@ -40,13 +40,13 @@ namespace Driederik.Controllers
             return await _superHeroService.GetSuperHero(Id);
         }
 
-        [HttpPut("{SuperHero}")]
+        [HttpPut]
         public void UpdateHeroAsync(SuperHero superHero)
         {
             _superHeroService.UpdateSuperHero(superHero);
         }
 
-        [HttpDelete("{SuperHero}")]
+        [HttpDelete]
         public void DeleteHero(SuperHero superHero)
         {
             _superHeroService.DeleteSuperHero(superHero);
