@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Driederik.Controllers
 {
     [ApiController]
-    [Route("hihi[controller]s")]
+    [Route("[controller]")]
     //letters aanvullen om naam van class aan te passen in Swagger
     public class SuperPowerController : ControllerBase
     {
@@ -47,10 +47,10 @@ namespace Driederik.Controllers
             _superPowerService.UpdateSuperPower(superPower);
         }
 
-        [HttpDelete]
-        public void DeletePower(SuperPower superPower)
+        [HttpDelete("{Id}")]
+        public async Task DeletePowerAsync(int id)
         {
-            _superPowerService.DeleteSuperPower(superPower);
+            await _superPowerService.DeleteSuperPowerAsync(id);
         }
     }
 }

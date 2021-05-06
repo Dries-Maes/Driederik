@@ -37,9 +37,11 @@ namespace Driederik.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteSuperPower(SuperPower superPower)
+        public async Task DeleteSuperPowerAsync(int id)
         {
-            _context.SuperPowers.Remove(superPower);
+            var superpower = new SuperPower { Id = id };
+            _context.Attach(superpower);
+            _context.Remove(superpower);
             await _context.SaveChangesAsync();
         }
     }

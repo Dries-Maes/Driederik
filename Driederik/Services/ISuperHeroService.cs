@@ -5,10 +5,10 @@ namespace Driederik.Services
 {
     public interface ISuperHeroService
     {
-        Task AddSuperHero(SuperHero superHero);
-        Task DeleteSuperHero(SuperHero superHero);
-        Task<SuperHero> GetSuperHero(int id);
-        Task<IEnumerable<SuperHero>> GetSuperHeroes();
-        Task UpdateSuperHero(SuperHero superHero);
+        Task AddSuperHeroAsync(SuperHero superHero);
+        Task DeleteSuperHeroAsync(int id);
+        Task<SuperHero> GetSuperHeroAsync(int id);
+        Task<IEnumerable<SuperHero>> GetSuperHeroesAsync();
+        Task UpdateSuperHeroAsync(int id);
     }
 }

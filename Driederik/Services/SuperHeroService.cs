@@ -15,31 +15,35 @@ namespace Driederik.Services
             _context = context;
         }
 
-        public async Task<IEnumerable<SuperHero>> GetSuperHeroes()
+        public async Task<IEnumerable<SuperHero>> GetSuperHeroesAsync()
         {
             return await _context.SuperHeroes.ToListAsync();
         }
 
-        public async Task<SuperHero> GetSuperHero(int id)
+        public async Task<SuperHero> GetSuperHeroAsync(int id)
         {
             return await _context.SuperHeroes.FindAsync(id);
         }
 
-        public async Task AddSuperHero(SuperHero superHero)
+        public async Task AddSuperHeroAsync(SuperHero superHero)
         {
             await _context.SuperHeroes.AddAsync(superHero);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateSuperHero(SuperHero superHero)
+        public async Task UpdateSuperHeroAsync(int id)
         {
-            _context.SuperHeroes.Update(superHero);
+            var hero = new SuperHero { Id = id };
+            _context.Attach(hero);
+            _context.Update(hero);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteSuperHero(SuperHero superHero)
+        public async Task DeleteSuperHeroAsync(int id)
         {
-            _context.SuperHeroes.Remove(superHero);
+            var hero = new SuperHero { Id = id };
+            _context.Attach(hero);
+            _context.Remove(hero);
             await _context.SaveChangesAsync();
         }
     }

@@ -29,6 +29,8 @@ namespace Driederik
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            // MEt 'AddCorrs' voegen we een Cor-header toe.allows Cross-origin requests => disabled by default for security reasons (deel 1)
+            services.AddCors();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Driederik", Version = "v1" });
@@ -55,6 +57,9 @@ namespace Driederik
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            // Deze 'UseCorrs' voegen we tussen de routing en authentication (deel 2) // link van browser van Angular app
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
 
             app.UseAuthorization();
 

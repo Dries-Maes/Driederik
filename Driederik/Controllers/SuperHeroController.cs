@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Driederik.Controllers
 {
     [ApiController]
-    [Route("haha[controller]es")]
+    [Route("[controller]")]
     public class SuperHeroController : ControllerBase
     {
         private readonly ILogger<WeatherForecastController> _logger;
@@ -25,31 +25,31 @@ namespace Driederik.Controllers
         [HttpPost]
         public async Task AddHeroAsync(SuperHero superHero)
         {
-            await _superHeroService.AddSuperHero(superHero);
+            await _superHeroService.AddSuperHeroAsync(superHero);
         }
 
         [HttpGet]
         public async Task<IEnumerable<SuperHero>> GetHeroesAsync()
         {
-            return await _superHeroService.GetSuperHeroes();
+            return await _superHeroService.GetSuperHeroesAsync();
         }
 
         [HttpGet("{Id}")]
         public async Task<SuperHero> GetHeroAsync(int Id)
         {
-            return await _superHeroService.GetSuperHero(Id);
+            return await _superHeroService.GetSuperHeroAsync(Id);
         }
 
-        [HttpPut]
-        public void UpdateHeroAsync(SuperHero superHero)
+        [HttpPut("{Id}")]
+        public async Task UpdateHeroAsync(int id)
         {
-            _superHeroService.UpdateSuperHero(superHero);
+           await _superHeroService.UpdateSuperHeroAsync(id);
         }
 
-        [HttpDelete]
-        public void DeleteHero(SuperHero superHero)
+        [HttpDelete("{Id}")]
+        public async Task DeleteHeroAsync(int id)
         {
-            _superHeroService.DeleteSuperHero(superHero);
+            await _superHeroService.DeleteSuperHeroAsync(id);
         }
     }
 }
